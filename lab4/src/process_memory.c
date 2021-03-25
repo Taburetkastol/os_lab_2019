@@ -7,7 +7,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-/* Below is a macro definition */
+/* Below is a macro definition. Мне говорили, что макросы вместо функций - плохо */
 #define SHW_ADR(ID, I) (printf("ID %s \t is at virtual address: %8X\n", ID, &I))
 
 extern int etext, edata, end; /* Global variables for process
