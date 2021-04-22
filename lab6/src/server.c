@@ -14,6 +14,7 @@
 #include "pthread.h"
 #include "factorial.h"
 
+
 struct FactorialArgs {
   uint64_t begin;
   uint64_t end;
@@ -23,6 +24,7 @@ struct FactorialArgs {
 uint64_t Factorial(const struct FactorialArgs *args) {
   uint64_t ans = 1;
   uint64_t i = (*args).begin;
+  
   for (; i < (*args).end; i++){
       ans *= i;
   }
@@ -153,7 +155,7 @@ int main(int argc, char **argv) {
       for (; i < tnum; i++) {
         // TODO: parallel somehow
         args[i].begin = begin + (end-begin+1)/tnum*i;
-        args[i].end = begin + (end-begin+1)/tnum*(i+1);
+        args[i].end = (i == tnum-1) ? (end+1) : begin+(end-begin+1)/tnum*(i+1);
         args[i].mod = mod;
 
         if (pthread_create(&threads[i], NULL, ThreadFactorial,
