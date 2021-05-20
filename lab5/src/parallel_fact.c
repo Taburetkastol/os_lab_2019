@@ -27,7 +27,6 @@ void *Factorial(struct Fact* args)
     {
         pthread_mutex_lock(&mut);
         common = (common * (i % mod)) % mod;
-        printf("fact = %d\n", common);
         pthread_mutex_unlock(&mut);
     }
     common %= mod;
@@ -111,7 +110,7 @@ int main(int argc, char **argv)
 
   for (uint32_t i = 0; i < pnum; i++) 
   {
-        args[i].current = i*k/pnum;
+    args[i].current = i*k/pnum;
 		args[i].begin = i*k/pnum;
 		args[i].end = (i == (pnum - 1)) ? k : (i+1)*k/pnum;
   }
@@ -132,5 +131,5 @@ int main(int argc, char **argv)
   }
 
   printf("Total fact: %d\n", common);
-    return 0;
+  return 0;
 }
